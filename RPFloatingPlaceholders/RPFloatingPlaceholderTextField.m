@@ -68,7 +68,7 @@
     
     // This must be done in awakeFromNib since global tint color isn't set by the time initWithCoder: is called
     [self setupDefaultColorStates];
-    
+    self.floatingLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:20];
     // Ensures that the placeholder & text are set through our custom setters
     // when loaded from a nib/storyboard.
     self.placeholder = self.placeholder;
@@ -140,7 +140,7 @@
     
     // Create the floating label instance and add it to the view
     self.floatingLabel = [[UILabel alloc] init];
-    self.floatingLabel.font = [UIFont boldSystemFontOfSize:11.f];
+    self.floatingLabel.font = self.floatingLabelFont ? :[UIFont boldSystemFontOfSize:11.0f];
     self.floatingLabel.backgroundColor = [UIColor clearColor];
     self.floatingLabel.alpha = 1.f;
     
@@ -166,6 +166,7 @@
     self.floatingLabelInactiveTextColor = [UIColor colorWithWhite:0.7f alpha:1.f];
     
     self.floatingLabel.textColor = self.floatingLabelActiveTextColor;
+    self.floatingLabel.font = self.floatingLabelFont;
 }
 
 #pragma mark - Drawing & Animations
