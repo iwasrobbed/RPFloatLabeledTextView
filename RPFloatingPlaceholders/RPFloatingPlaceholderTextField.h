@@ -25,11 +25,18 @@
 @property (nonatomic, strong, readonly) UILabel *floatingLabel;
 
 /**
+ The font of the floating label displayed above the text field.
+*/
+
+@property (nonatomic, strong) UIFont *floatingLabelFont;
+
+/**
  The color of the floating label displayed above the text field when it is in
  an active state (i.e. the associated text view is first responder).
- 
+
  @discussion Note: Tint color is used by default if this is nil.
  */
+
 @property (nonatomic, strong) UIColor *floatingLabelActiveTextColor;
 
 /**
