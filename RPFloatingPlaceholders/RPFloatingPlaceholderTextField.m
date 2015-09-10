@@ -349,6 +349,12 @@
 
 - (void)textFieldTextDidChange:(NSNotification *)notification
 {
+	//Text was set programmatically, so show the floating label but don't animate it
+	if (!notification && self.hasText) {
+		[self showFloatingLabelWithAnimation:NO];
+		return;
+	}
+	
     BOOL previousShouldDrawPlaceholderValue = self.shouldDrawPlaceholder;
     self.shouldDrawPlaceholder = !self.hasText;
     
