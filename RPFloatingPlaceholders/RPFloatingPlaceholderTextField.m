@@ -121,6 +121,11 @@
     [self setNeedsDisplay];
 }
 
+- (void)setFloatingLabelFont:(UIFont *)floatingLabelFont
+{
+    self.floatingLabel.font = floatingLabelFont;
+}
+
 - (void)setFloatingLabelActiveTextColor:(UIColor *)floatingLabelActiveTextColor
 {
     _floatingLabelActiveTextColor = floatingLabelActiveTextColor;
