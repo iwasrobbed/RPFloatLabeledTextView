@@ -147,7 +147,7 @@
     
     // Forces drawRect to be called when the bounds change
     self.contentMode = UIViewContentModeRedraw;
-
+    
     // Set the default animation direction
     self.animationDirection = RPFloatingPlaceholderAnimateUpward;
     
@@ -165,6 +165,8 @@
     
     // Set the background to a clear color
     self.backgroundColor = [UIColor clearColor];
+    
+    self.verticalSpacingFromFloatingLabel = 0;
 }
 
 - (void)setupDefaultColorStates {
@@ -295,7 +297,7 @@
 {
     [self.floatingLabel sizeToFit];
     
-    CGFloat offset = ceil(self.floatingLabel.font.lineHeight);
+    CGFloat offset = ceil(self.floatingLabel.font.lineHeight) + self.verticalSpacingFromFloatingLabel;
     
     self.originalFloatingLabelFrame = CGRectMake(self.originalTextFieldFrame.origin.x + 5.f, self.originalTextFieldFrame.origin.y,
                                                  self.originalTextFieldFrame.size.width - 10.f, self.floatingLabel.frame.size.height);

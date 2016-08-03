@@ -148,7 +148,7 @@
     
     // Forces drawRect to be called when the bounds change
     self.contentMode = UIViewContentModeRedraw;
-
+    
     // Set the default animation direction
     self.animationDirection = RPFloatingPlaceholderAnimateUpward;
     
@@ -163,7 +163,7 @@
         // Change content inset to decrease margin between floating label and
         // text view text
         self.contentInset = UIEdgeInsetsMake(-10.f, 0.f, 0.f, 0.f);
-    
+        
         // Fixes a vertical alignment issue when setting text at runtime
         self.textContainerInset = UIEdgeInsetsMake(10.f, 0.f, 0.f, 0.f);
     } else {
@@ -177,6 +177,8 @@
     
     // Set the background to a clear color
     self.backgroundColor = [UIColor clearColor];
+    
+    self.verticalSpacingFromFloatingLabel = 0;
 }
 
 - (void)setupDefaultColorStates {
@@ -225,15 +227,15 @@
             // Inset the placeholder by the same 5px on both sides so that it works in right-to-left languages too
             CGRect placeholderFrame = CGRectMake(5.f, 10.f, self.frame.size.width - 10.f, self.frame.size.height - 20.f);
             [self.placeholder drawInRect:placeholderFrame
-                      withAttributes:placeholderAttributes];
-
+                          withAttributes:placeholderAttributes];
+            
         } else {
             CGRect placeholderFrame = CGRectMake(8.f, 8.f, self.frame.size.width - 10.f, self.frame.size.height - 20.f);
             NSAttributedString *attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
                                                                                         attributes:placeholderAttributes];
             [attributedPlaceholder drawInRect:placeholderFrame];
         } // iOS 6
-
+        
     }
 }
 
@@ -309,17 +311,17 @@
 {
     [self.floatingLabel sizeToFit];
     
-    CGFloat offset = ceil(self.floatingLabel.font.lineHeight);
+    CGFloat offset = ceil(self.floatingLabel.font.lineHeight) + self.verticalSpacingFromFloatingLabel;
     
     self.originalFloatingLabelFrame = CGRectMake(self.originalTextViewFrame.origin.x + 5.f, self.originalTextViewFrame.origin.y,
                                                  self.originalTextViewFrame.size.width - 10.f, self.floatingLabel.frame.size.height);
     self.floatingLabel.frame = self.originalFloatingLabelFrame;
     
     self.offsetFloatingLabelFrame = CGRectMake(self.originalFloatingLabelFrame.origin.x, self.originalFloatingLabelFrame.origin.y - offset,
-                                           self.originalFloatingLabelFrame.size.width, self.originalFloatingLabelFrame.size.height);
+                                               self.originalFloatingLabelFrame.size.width, self.originalFloatingLabelFrame.size.height);
     
     self.offsetTextViewFrame = CGRectMake(self.originalTextViewFrame.origin.x, self.originalTextViewFrame.origin.y + offset,
-                                      self.originalTextViewFrame.size.width, self.originalTextViewFrame.size.height - offset);
+                                          self.originalTextViewFrame.size.width, self.originalTextViewFrame.size.height - offset);
 }
 
 - (void)animateFloatingLabelColorChangeWithAnimationBlock:(void (^)(void))animationBlock

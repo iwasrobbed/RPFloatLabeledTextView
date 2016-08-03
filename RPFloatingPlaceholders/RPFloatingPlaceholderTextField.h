@@ -47,4 +47,9 @@
  */
 @property (nonatomic, strong) UIColor *defaultPlaceholderColor;
 
+/**
+ The vertical spacing between the floating label and the text view. Defaults to zero.
+ */
+@property (nonatomic) CGFloat verticalSpacingFromFloatingLabel;
+
 @end
