@@ -41,6 +41,11 @@
 @property (nonatomic, strong) UIColor *floatingLabelInactiveTextColor;
 
 /**
+ The font of the floating label displayed above the text field.
+ */
+@property (nonatomic, strong) UIFont *floatingLabelFont;
+
+/**
  The default color of the text field's placeholder text
  
  @discussion Note: 70% gray is used by default if this is nil.
